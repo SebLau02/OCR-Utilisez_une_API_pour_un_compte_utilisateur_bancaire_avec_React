@@ -99,6 +99,12 @@ $autos: auto;
   }
 }
 
+$textAlign: left, right, center, justify;
+@each $prop in $textAlign {
+  .text-#{$prop} {
+    text-align: $prop;
+  }
+}
 $position: relative, absolute, fixed, sticky;
 @each $prop in $position {
   .#{$prop} {

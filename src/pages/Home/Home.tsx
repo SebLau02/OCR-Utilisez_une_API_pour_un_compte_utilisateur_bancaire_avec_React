@@ -34,14 +34,23 @@ function Home() {
         </article>
       </div>
 
-      {FEATURES.map((feature, i) => (
-        <FeatureItem
-          key={i}
-          img={feature.img}
-          title={feature.title}
-          text={feature.text}
-        />
-      ))}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "5rem",
+          padding: "2.5rem",
+        }}
+      >
+        {FEATURES.map((feature, i) => (
+          <FeatureItem
+            key={i}
+            img={feature.img}
+            title={feature.title}
+            text={feature.text}
+          />
+        ))}
+      </div>
     </RootLayout>
   );
 }
