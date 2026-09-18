@@ -1,0 +1,11 @@
+@use "../variables/variables.scss" as *;
+
+.Button-Base {
+  background: $primary-color;
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+  font-weight: bold;
+  color: $secondary;
+  font-size: 1.1rem;
+}

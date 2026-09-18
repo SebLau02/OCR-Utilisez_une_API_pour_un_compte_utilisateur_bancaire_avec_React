@@ -72,6 +72,9 @@
 //   fill: $light;
 // }
 
+.bg-dark-blue {
+  background-color: $dark-blue;
+}
 .w-full {
   width: 100%;
 }
@@ -133,6 +136,12 @@ $alignItems: flex-start, flex-end, center, baseline, stretch;
 @each $align in $alignItems {
   .align-#{$align} {
     align-items: $align;
+  }
+}
+$alignSelf: auto, flex-start, flex-end, center, baseline, stretch;
+@each $align in $alignSelf {
+  .self-#{$align} {
+    align-self: $align;
   }
 }
 
