@@ -25,15 +25,15 @@
 .bg-secondary {
   background-color: $secondary;
 }
-// .text-light {
-//   color: $light;
-// }
+.text-secondary {
+  color: $secondary;
+}
 // .text-primary-text {
 //   color: $primary-text;
 // }
-// .text-grey-800 {
-//   color: $grey-800;
-// }
+.text-dark-800 {
+  color: $dark-800;
+}
 // .text-primary {
 //   color: $primary-main;
 // }
@@ -74,6 +74,9 @@
 
 .bg-dark-blue {
   background-color: $dark-blue;
+}
+.w-fit {
+  width: fit-content;
 }
 .w-full {
   width: 100%;

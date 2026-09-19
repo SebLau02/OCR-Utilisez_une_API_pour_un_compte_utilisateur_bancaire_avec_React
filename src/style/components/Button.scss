@@ -8,4 +8,14 @@
   font-weight: bold;
   color: $secondary;
   font-size: 1.1rem;
+  cursor: pointer;
+  position: relative;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(1);
+  }
 }
