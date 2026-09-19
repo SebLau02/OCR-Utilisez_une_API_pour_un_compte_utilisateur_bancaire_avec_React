@@ -2,25 +2,43 @@ import { CircleUser } from "lucide-react";
 import RootLayout from "../../components/RootLayout";
 import Input from "../../components/Input/Input";
 import CheckBox from "../../components/CheckBox/CheckBox";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+import { getProfile, login } from "../../services/auth";
+import Cookies from "js-cookie";
+import { COOKIE_KEY, USER_ID_KEY } from "../../config/constant";
 
 function SignIn() {
-  const [res, setRes] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    setRes(true);
-  };
+    const email = String(formData.get("email"));
+    const password = String(formData.get("password"));
+    const rememberMe = formData.get("rememberMe") === "on";
 
-  useEffect(() => {
-    if (res) {
-      navigate("/user");
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { token } = await login(email, password);
+      Cookies.set(COOKIE_KEY, token, rememberMe ? { expires: 1 } : undefined);
+      const profile = await getProfile(token);
+      Cookies.set(
+        USER_ID_KEY,
+        profile.id,
+        rememberMe ? { expires: 1 } : undefined,
+      );
+      navigate(`/user/${profile.id}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Connexion impossible");
+    } finally {
+      setLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [res]);
+  };
 
   return (
     <RootLayout>
@@ -39,11 +57,23 @@ function SignIn() {
         >
           <CircleUser size={18} />
           <h1>Sign In</h1>
-          <Input label="Username" id="username" type="text" />
-          <Input label="Password" id="password" type="password" />
-          <CheckBox label="Remember Me" id="rememberMe" type="checkbox" />
-          <button type="submit" className="Button-Base">
-            Sign In
+          <Input label="Email" id="email" name="email" type="email" required />
+          <Input
+            label="Password"
+            id="password"
+            name="password"
+            type="password"
+            required
+          />
+          <CheckBox
+            label="Remember Me"
+            id="rememberMe"
+            name="rememberMe"
+            type="checkbox"
+          />
+          {error && <p role="alert">{error}</p>}
+          <button type="submit" className="Button-Base" disabled={loading}>
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
       </main>

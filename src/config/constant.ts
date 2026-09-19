@@ -19,3 +19,7 @@ export const FEATURES = [
     text: "We use top of the line encryption to make sure your data and money is always safe.",
   },
 ];
+
+export const API_BASE_URL = "http://localhost:3001/api/v1";
+export const COOKIE_KEY = "argent_bank";
+export const USER_ID_KEY = "argent_bank_user_id";
