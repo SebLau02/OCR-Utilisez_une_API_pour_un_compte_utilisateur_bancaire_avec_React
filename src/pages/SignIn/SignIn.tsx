@@ -2,16 +2,21 @@ import { CircleUser } from "lucide-react";
 import RootLayout from "../../components/RootLayout";
 import Input from "../../components/Input/Input";
 import CheckBox from "../../components/CheckBox/CheckBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { getProfile, login } from "../../services/auth";
 import Cookies from "js-cookie";
 import { COOKIE_KEY, USER_ID_KEY } from "../../config/constant";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../store/store";
+import { setToken, setUser } from "../../store/reducers";
 
 function SignIn() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,6 +37,9 @@ function SignIn() {
         profile.id,
         rememberMe ? { expires: 1 } : undefined,
       );
+
+      dispatch(setToken(token));
+      dispatch(setUser(profile));
       navigate(`/user/${profile.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Connexion impossible");
@@ -39,6 +47,13 @@ function SignIn() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(`/user/${user.id}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <RootLayout>

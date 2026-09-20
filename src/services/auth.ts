@@ -1,16 +1,10 @@
 import { API_BASE_URL } from "../config/constant";
+import type { User } from "../config/types";
 
 type ApiResponse<T> = {
   status: number;
   message: string;
   body: T;
-};
-
-export type Profile = {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
 };
 
 async function request<T>(path: string, init: RequestInit): Promise<T> {
@@ -36,7 +30,7 @@ export function login(email: string, password: string) {
 }
 
 export function getProfile(token: string) {
-  return request<Profile>("/user/profile", {
+  return request<User>("/user/profile", {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
   });
