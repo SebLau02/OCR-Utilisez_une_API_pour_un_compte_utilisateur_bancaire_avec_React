@@ -30,15 +30,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/se-connecter" element={<SignIn />} />
-        {user && (
-          <Route path="/user/:id" element={<User />}>
-            <Route index element={<User />} />
-            <Route path="transactions">
-              {/* <Route index element={<Transactions />} />
+        <Route path="/user/:id" element={<User />}>
+          <Route index element={<User />} />
+          <Route path="transactions">
+            {/* <Route index element={<Transactions />} />
             <Route path=":transactionId" element={<Transaction />} /> */}
-            </Route>
           </Route>
-        )}
+        </Route>
       </Routes>
     </Suspense>
   );

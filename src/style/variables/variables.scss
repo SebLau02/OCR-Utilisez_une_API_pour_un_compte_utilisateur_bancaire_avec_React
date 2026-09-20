@@ -3,3 +3,11 @@ $dark: #222;
 $dark-800: #2c3e50;
 $secondary: white;
 $dark-blue: #12002b;
+
+:root {
+  --primary-color: $primary-color;
+  --dark: $dark;
+  --dark-800: $dark-800;
+  --secondary: $secondary;
+  --dark-blue: $dark-blue;
+}

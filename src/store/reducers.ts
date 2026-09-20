@@ -1,5 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { User } from "../config/types";
+import Cookies from "js-cookie";
+import { COOKIE_KEY, USER_ID_KEY } from "../config/constant";
 
 type AuthState = { token: string | null; user: User | null };
 
@@ -22,6 +24,8 @@ const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.user = null;
+      Cookies.remove(COOKIE_KEY);
+      Cookies.remove(USER_ID_KEY);
     },
   },
 });

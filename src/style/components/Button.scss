@@ -18,4 +18,8 @@
   &:active {
     filter: brightness(1);
   }
+  &.variant-text {
+    background-color: transparent;
+    color: $primary-color;
+  }
 }

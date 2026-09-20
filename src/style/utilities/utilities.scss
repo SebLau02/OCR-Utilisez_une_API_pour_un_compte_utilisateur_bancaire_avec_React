@@ -31,6 +31,9 @@
 // .text-primary-text {
 //   color: $primary-text;
 // }
+.text-dark {
+  color: $dark;
+}
 .text-dark-800 {
   color: $dark-800;
 }
@@ -111,6 +114,13 @@ $textAlign: left, right, center, justify;
     text-align: $prop;
   }
 }
+$cursor: pointer, default, none;
+@each $prop in $cursor {
+  .cursor-#{$prop} {
+    cursor: $prop;
+  }
+}
+
 $position: relative, absolute, fixed, sticky;
 @each $prop in $position {
   .#{$prop} {
