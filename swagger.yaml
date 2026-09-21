@@ -22,6 +22,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -42,10 +43,16 @@ paths:
       summary: User Account Details
       description: API for retrieving user account details
       parameters:
+        - in: path
+          name: id
+          description: Account ID
+          required: true
+          type: string
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -57,7 +64,7 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
-  /user/accounts/{id}/transaction/{id}:
+  /user/accounts/{id}/transaction/{transactionId}:
     patch:
       security:
         - Bearer: []
@@ -66,10 +73,21 @@ paths:
       summary: Update User Account transaction
       description: API for updating user account transaction
       parameters:
+        - in: path
+          name: id
+          description: Account ID
+          required: true
+          type: string
+        - in: path
+          name: transactionId
+          description: Transaction ID
+          required: true
+          type: string
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
       produces:
         - application/json
       responses:
