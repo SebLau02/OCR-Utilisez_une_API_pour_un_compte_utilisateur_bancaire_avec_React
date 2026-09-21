@@ -1,0 +1,57 @@
+{
+  "status": 200,
+  "message": "Successfully got transactions",
+  "body": {
+    "title": "Argent Bank Savings (x6712)",
+    "amount": "$10,928.42",
+    "description": "Available Balance",
+    "category": "saving",
+    "lines": [
+      {
+        "date": "June 22nd, 2020",
+        "description": "Monthly Transfer",
+        "amount": 500,
+        "balance": 10928.42,
+        "transactionType": "Electronic",
+        "category": "Savings",
+        "notes": "Automatic monthly transfer"
+      },
+      {
+        "date": "June 15th, 2020",
+        "description": "Interest Payment",
+        "amount": 12.4,
+        "balance": 10428.42,
+        "transactionType": "Electronic",
+        "category": "Interest",
+        "notes": "Monthly interest"
+      },
+      {
+        "date": "June 10th, 2020",
+        "description": "Monthly Transfer",
+        "amount": 500,
+        "balance": 10416.02,
+        "transactionType": "Electronic",
+        "category": "Savings",
+        "notes": "Automatic monthly transfer"
+      },
+      {
+        "date": "May 30th, 2020",
+        "description": "Vacation Fund",
+        "amount": 250,
+        "balance": 9916.02,
+        "transactionType": "Electronic",
+        "category": "Travel",
+        "notes": "Summer trip"
+      },
+      {
+        "date": "May 20th, 2020",
+        "description": "Interest Payment",
+        "amount": 11.8,
+        "balance": 9666.02,
+        "transactionType": "Electronic",
+        "category": "Interest",
+        "notes": "Monthly interest"
+      }
+    ]
+  }
+}

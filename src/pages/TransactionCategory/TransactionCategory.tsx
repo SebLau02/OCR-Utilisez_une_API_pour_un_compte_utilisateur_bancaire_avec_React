@@ -83,12 +83,18 @@ function TransactionCategory() {
             </p>
           </div>
         </header>
-        <div className="mt-4">
+        <div
+          className="mt-4"
+          style={{
+            maxWidth: 800,
+            width: "100%",
+          }}
+        >
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
-              width: 800,
+              paddingLeft: "40px",
             }}
           >
             {heads.map((head, i) => (

@@ -1,0 +1,57 @@
+{
+  "status": 200,
+  "message": "Successfully got transactions",
+  "body": {
+    "title": "Argent Bank Credit Card (x8349)",
+    "amount": "$184.30",
+    "description": "Current Balance",
+    "category": "credit-card",
+    "lines": [
+      {
+        "date": "June 21st, 2020",
+        "description": "Northern Coffee House",
+        "amount": 8.5,
+        "balance": 184.3,
+        "transactionType": "Electronic",
+        "category": "Food",
+        "notes": "Morning coffee"
+      },
+      {
+        "date": "June 19th, 2020",
+        "description": "City Transit",
+        "amount": 24,
+        "balance": 175.8,
+        "transactionType": "Electronic",
+        "category": "Transport",
+        "notes": "Weekly pass"
+      },
+      {
+        "date": "June 17th, 2020",
+        "description": "Book Corner",
+        "amount": 32.9,
+        "balance": 151.8,
+        "transactionType": "Electronic",
+        "category": "Shopping",
+        "notes": "This is a note for the transaction"
+      },
+      {
+        "date": "June 14th, 2020",
+        "description": "Green Market",
+        "amount": 61.4,
+        "balance": 118.9,
+        "transactionType": "Electronic",
+        "category": "Groceries",
+        "notes": "Weekly groceries"
+      },
+      {
+        "date": "June 12th, 2020",
+        "description": "Streaming Service",
+        "amount": 57.5,
+        "balance": 57.5,
+        "transactionType": "Electronic",
+        "category": "Entertainment",
+        "notes": "Annual subscription"
+      }
+    ]
+  }
+}

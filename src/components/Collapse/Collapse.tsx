@@ -34,7 +34,13 @@ function Collapse({ title, children }: Props) {
             transform: open ? "rotate(-180deg)" : "rotate(0deg)",
           }}
         />
-        <h3>{title}</h3>
+        <h3
+          style={{
+            flex: 1,
+          }}
+        >
+          {title}
+        </h3>
       </button>
       {open && (
         <div
