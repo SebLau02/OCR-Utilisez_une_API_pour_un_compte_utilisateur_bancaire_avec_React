@@ -64,7 +64,7 @@ function TransactionCategory() {
               {transactions.title}
             </h2>
             <p
-              className="text-dark-800 text-center"
+              className="text-dark-800 text-center my-1"
               style={{
                 fontWeight: "bold",
                 fontSize: "40px",
