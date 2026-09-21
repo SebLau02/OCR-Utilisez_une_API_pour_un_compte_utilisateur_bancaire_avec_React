@@ -12,7 +12,7 @@ function UnauthentifiedLayout({ children }: Props) {
 
   useEffect(() => {
     if (!user) {
-      navigate("/se-connecter");
+      navigate("/sign-in");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);

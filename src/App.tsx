@@ -1,17 +1,16 @@
 import { Suspense, useEffect } from "react";
 import { Routes, Route } from "react-router";
-import { Home, SignIn } from "./pages";
+import { Home, SignIn, TransactionCategory, Transactions } from "./pages";
 import Circular from "./components/Circular";
 import User from "./pages/User/User";
-import { useDispatch, useSelector } from "react-redux";
-import { type AppDispatch, type RootState } from "./store/store";
+import { useDispatch } from "react-redux";
+import { type AppDispatch } from "./store/store";
 import { setToken, setUser } from "./store/reducers";
 import Cookies from "js-cookie";
 import { COOKIE_KEY } from "./config/constant";
 import { getProfile } from "./services/auth";
 
 function App() {
-  const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -29,12 +28,12 @@ function App() {
     <Suspense fallback={<Circular />}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/se-connecter" element={<SignIn />} />
-        <Route path="/user/:id" element={<User />}>
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/user/:id">
           <Route index element={<User />} />
-          <Route path="transactions">
-            {/* <Route index element={<Transactions />} />
-            <Route path=":transactionId" element={<Transaction />} /> */}
+          <Route path=":transactionCategorySlug">
+            <Route index element={<TransactionCategory />} />
+            <Route path=":transactionId" element={<Transactions />} />
           </Route>
         </Route>
       </Routes>

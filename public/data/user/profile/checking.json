@@ -1,0 +1,57 @@
+{
+  "status": 200,
+  "message": "Successfully got transactions",
+  "body": {
+    "title": "Argent Bank Checking (x8349)",
+    "amount": "$2,082.79",
+    "description": "Available Balance",
+    "category": "checking",
+    "lines": [
+      {
+        "date": "June 20th, 2020",
+        "description": "Golden Sun Bakery",
+        "amount": 5,
+        "balance": 2082.79,
+        "transactionType": "Electronic",
+        "category": "Food",
+        "notes": "This is a note for the transaction"
+      },
+      {
+        "date": "June 20th, 2020",
+        "description": "Golden Sun Bakery",
+        "amount": 10,
+        "balance": 2087.79,
+        "transactionType": "Electronic",
+        "category": "Food",
+        "notes": "This is a note for the transaction"
+      },
+      {
+        "date": "June 20th, 2020",
+        "description": "Golden Sun Bakery",
+        "amount": 15,
+        "balance": 2092.79,
+        "transactionType": "Electronic",
+        "category": "Food",
+        "notes": "This is a note for the transaction"
+      },
+      {
+        "date": "June 20th, 2020",
+        "description": "Golden Sun Bakery",
+        "amount": 20,
+        "balance": 2102.79,
+        "transactionType": "Electronic",
+        "category": "Food",
+        "notes": "This is a note for the transaction"
+      },
+      {
+        "date": "June 20th, 2020",
+        "description": "Golden Sun Bakery",
+        "amount": 50,
+        "balance": 2152.79,
+        "transactionType": "Electronic",
+        "category": "Food",
+        "notes": "This is a note for the transaction"
+      }
+    ]
+  }
+}

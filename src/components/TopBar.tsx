@@ -45,10 +45,7 @@ function TopBar() {
             </button>
           </div>
         ) : (
-          <Link
-            to="/se-connecter"
-            className="d-flex align-center gap-1 font-bold"
-          >
+          <Link to="/sign-in" className="d-flex align-center gap-1 font-bold">
             <CircleUser size={18} />
             Sign In
           </Link>

@@ -13,16 +13,19 @@ const mockTransactions = [
     title: "Argent Bank Checking (x8349)",
     amount: "$2,082.79",
     description: "Available Balance",
+    category: "checking",
   },
   {
-    title: "Argent Bank Checking (x8349)",
-    amount: "$2,082.79",
+    title: "Argent Bank Savings (x6712)",
+    amount: "$10,928.42",
     description: "Available Balance",
+    category: "saving",
   },
   {
-    title: "Argent Bank Checking (x8349)",
-    amount: "$2,082.79",
+    title: "Argent Bank Credit Card (x8349)",
+    amount: "$$184.30",
     description: "Available Balance",
+    category: "credit-card",
   },
 ];
 
@@ -116,7 +119,7 @@ function User() {
               title={transaction.title}
               amount={transaction.amount}
               description={transaction.description}
-              href="/transaction"
+              href={transaction.category}
             />
           ))}
         </div>
