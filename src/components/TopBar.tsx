@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import ArgentBankLogo from "../assets/argentBankLogo.png";
 import { CircleUser, LogOut } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,9 +9,11 @@ import UnauthentifiedLayout from "./UnauthentifiedLayout";
 function TopBar() {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const onLogout = () => {
     dispatch(logout());
+    navigate("/");
   };
 
   return (
