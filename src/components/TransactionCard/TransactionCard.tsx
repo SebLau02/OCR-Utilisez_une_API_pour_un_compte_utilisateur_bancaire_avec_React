@@ -9,7 +9,7 @@ interface Props {
 function TransactionCard({ title, amount, description, href }: Props) {
   return (
     <article
-      className="d-flex align-center justify-space-between"
+      className="d-flex align-center justify-space-between flex-sm-column"
       style={{
         border: "1px solid black",
         padding: "1.5rem",
@@ -47,9 +47,9 @@ function TransactionCard({ title, amount, description, href }: Props) {
       </div>
       <Link
         to={href}
-        className="Button-Base"
+        className="Button-Base mt-sm-2"
         style={{
-          width: "fit-content",
+          maxWidth: 200,
         }}
       >
         View transaction

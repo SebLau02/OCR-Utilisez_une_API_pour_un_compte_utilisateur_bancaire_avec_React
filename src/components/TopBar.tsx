@@ -4,7 +4,6 @@ import { CircleUser, LogOut } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../store/store";
 import { logout } from "../store/reducers";
-import UnauthentifiedLayout from "./UnauthentifiedLayout";
 
 function TopBar() {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -17,17 +16,20 @@ function TopBar() {
   };
 
   return (
-    <UnauthentifiedLayout>
+    <>
       <nav className="d-flex justify-space-between align-center px-2 py-1">
-        <img
-          src={ArgentBankLogo}
-          alt="Argent Bank Logo"
-          style={{
-            maxWidth: 200,
-          }}
-        />
+        <Link to="/">
+          <img
+            src={ArgentBankLogo}
+            alt="Argent Bank Logo"
+            style={{
+              maxWidth: 200,
+            }}
+          />
+        </Link>
+
         {user ? (
-          <div className="d-flex align-center gap-2">
+          <div className="d-flex align-center gap-2 gap-sm-0">
             <Link
               to={`/user/${user.id}`}
               className="d-flex align-center gap-1 font-bold"
@@ -39,6 +41,8 @@ function TopBar() {
               className="Button-Base variant-text d-flex align-center gap-1"
               style={{
                 color: "var(--dark)",
+                minWidth: "fit-content",
+                fontSize: "1rem",
               }}
               onClick={onLogout}
             >
@@ -53,7 +57,7 @@ function TopBar() {
           </Link>
         )}
       </nav>
-    </UnauthentifiedLayout>
+    </>
   );
 }
 

@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import RootLayout from "../../components/RootLayout";
 import TransactionCard from "../../components/TransactionCard/TransactionCard";
 import type { AppDispatch, RootState } from "../../store/store";
-import Circular from "../../components/Circular";
 import { useState } from "react";
 import Input from "../../components/Input/Input";
 import { updateProfile } from "../../services/user";
 import { setUser } from "../../store/reducers";
+import Circular from "../../components/Circular";
 
 const mockTransactions = [
   {

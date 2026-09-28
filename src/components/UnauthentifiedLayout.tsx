@@ -1,23 +1,13 @@
-import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
-import { useNavigate } from "react-router";
+import { Navigate, Outlet } from "react-router";
 
-interface Props {
-  children: React.ReactNode;
-}
-function UnauthentifiedLayout({ children }: Props) {
+function UnauthentifiedLayout() {
   const user = useSelector((state: RootState) => state.auth.user);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/sign-in");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  if (!user) return <Navigate to="/sign-in" replace />;
 
-  return <>{children}</>;
+  return <Outlet />;
 }
 
 export default UnauthentifiedLayout;

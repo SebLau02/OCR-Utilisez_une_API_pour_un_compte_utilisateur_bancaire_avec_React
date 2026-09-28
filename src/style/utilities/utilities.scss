@@ -245,3 +245,107 @@ $fontWeight: light, normal, medium, bold, bolder;
     opacity: #{$i / 10};
   }
 }
+
+// Variantes responsive : .d-md-none, .flex-sm-column, .text-lg-center...
+// Chaque palier s'applique en dessous de sa largeur (mobile first descendant).
+$breakpoints: (
+  "sm": 425px,
+  "md": 768px,
+  "lg": 1024px,
+);
+
+@each $bp, $size in $breakpoints {
+  @media screen and (max-width: $size) {
+    @each $display in $displays {
+      .d-#{$bp}-#{$display} {
+        display: $display;
+      }
+    }
+
+    @each $direction in $directions {
+      .flex-#{$bp}-#{$direction} {
+        flex-direction: $direction;
+      }
+    }
+
+    @each $align in $alignItems {
+      .align-#{$bp}-#{$align} {
+        align-items: $align;
+      }
+    }
+
+    @each $justify in $justifyContent {
+      .justify-#{$bp}-#{$justify} {
+        justify-content: $justify;
+      }
+    }
+
+    @each $prop in $textAlign {
+      .text-#{$bp}-#{$prop} {
+        text-align: $prop;
+      }
+    }
+
+    .w-#{$bp}-full {
+      width: 100%;
+    }
+
+    .w-#{$bp}-auto {
+      width: auto;
+    }
+
+    @for $i from 0 through 20 {
+      .gap-#{$bp}-#{$i} {
+        gap: #{$i * 0.5}rem;
+      }
+
+      .p-#{$bp}-#{$i} {
+        padding: #{$i * 0.5}rem;
+      }
+      .pl-#{$bp}-#{$i} {
+        padding-left: #{$i * 0.5}rem;
+      }
+      .pr-#{$bp}-#{$i} {
+        padding-right: #{$i * 0.5}rem;
+      }
+      .px-#{$bp}-#{$i} {
+        padding-left: #{$i * 0.5}rem;
+        padding-right: #{$i * 0.5}rem;
+      }
+      .py-#{$bp}-#{$i} {
+        padding-top: #{$i * 0.5}rem;
+        padding-bottom: #{$i * 0.5}rem;
+      }
+      .pt-#{$bp}-#{$i} {
+        padding-top: #{$i * 0.5}rem;
+      }
+      .pb-#{$bp}-#{$i} {
+        padding-bottom: #{$i * 0.5}rem;
+      }
+
+      .m-#{$bp}-#{$i} {
+        margin: #{$i * 0.5}rem;
+      }
+      .mx-#{$bp}-#{$i} {
+        margin-left: #{$i * 0.5}rem;
+        margin-right: #{$i * 0.5}rem;
+      }
+      .my-#{$bp}-#{$i} {
+        margin-top: #{$i * 0.5}rem;
+        margin-bottom: #{$i * 0.5}rem;
+      }
+      .mr-#{$bp}-#{$i} {
+        margin-right: #{$i * 0.5}rem;
+      }
+      .ml-#{$bp}-#{$i} {
+        margin-left: #{$i * 0.5}rem;
+      }
+      .mt-#{$bp}-#{$i} {
+        margin-top: #{$i * 0.5}rem;
+      }
+      .mb-#{$bp}-#{$i} {
+        margin-bottom: #{$i * 0.5}rem;
+      }
+    }
+  }
+}

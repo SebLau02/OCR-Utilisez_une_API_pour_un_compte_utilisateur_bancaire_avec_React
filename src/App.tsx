@@ -9,6 +9,7 @@ import { setToken, setUser } from "./store/reducers";
 import Cookies from "js-cookie";
 import { COOKIE_KEY } from "./config/constant";
 import { getProfile } from "./services/auth";
+import UnauthentifiedLayout from "./components/UnauthentifiedLayout";
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,7 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/user/:id">
+        <Route path="/user/:id" element={<UnauthentifiedLayout />}>
           <Route index element={<User />} />
           <Route path=":transactionCategorySlug">
             <Route index element={<TransactionCategory />} />
