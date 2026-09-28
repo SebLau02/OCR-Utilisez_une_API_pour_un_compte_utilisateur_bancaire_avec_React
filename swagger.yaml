@@ -16,7 +16,7 @@ paths:
       tags:
         - Account Module
       summary: User Accounts List
-      description: API for retrieving the accounts of the authenticated user (resolved from the JWT)
+      description: Retrieve every account belonging to the authenticated user, resolved from the JWT. No account of another user can be reached through this endpoint.
       parameters:
         - in: header
           name: Authorization
@@ -27,13 +27,13 @@ paths:
         - application/json
       responses:
         "200":
-          description: User Accounts List successfully
+          description: Accounts retrieved successfully
           schema:
             $ref: "#/definitions/AccountsResponse"
         "400":
           description: Invalid Fields
         "401":
-          description: Unauthorized
+          description: Unauthorized — missing or invalid token
         "500":
           description: Internal Server Error
   /accounts/{id}:
@@ -43,7 +43,7 @@ paths:
       tags:
         - Account Module
       summary: User Account Details
-      description: API for retrieving the details of one account belonging to the authenticated user
+      description: Retrieve one account of the authenticated user along with its transactions. Transactions are limited to the month given by the `month` parameter, and to the current month when it is omitted.
       parameters:
         - in: path
           name: id
@@ -55,35 +55,70 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
+        - in: query
+          name: month
+          description: Month in YYYY-MM format, defaults to the current month
+          required: false
+          type: string
       produces:
         - application/json
       responses:
         "200":
-          description: User Account details successfully
+          description: Account retrieved successfully
           schema:
             $ref: "#/definitions/AccountResponse"
         "400":
           description: Invalid Fields
         "401":
-          description: Unauthorized
+          description: Unauthorized — missing or invalid token
+        "404":
+          description: Account not found, or not owned by the authenticated user
         "500":
           description: Internal Server Error
-  /transactions/{transactionId}:
+  /transactions/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction Details
+      description: Retrieve the full details of a single transaction belonging to the authenticated user, including its transaction type, category and notes.
+      parameters:
+        - in: path
+          name: id
+          description: Transaction ID
+          required: true
+          type: string
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction retrieved successfully
+          schema:
+            $ref: "#/definitions/TransactionResponse"
+        "400":
+          description: Invalid Fields
+        "401":
+          description: Unauthorized — missing or invalid token
+        "404":
+          description: Transaction not found, or not owned by the authenticated user
+        "500":
+          description: Internal Server Error
     patch:
       security:
         - Bearer: []
       tags:
-        - Account Module
-      summary: Update User Account transaction
-      description: API for updating the category and notes of a transaction belonging to the authenticated user
+        - Transaction Module
+      summary: Update Transaction Details
+      description: Add or update the category and notes of a transaction belonging to the authenticated user. Fields omitted from the body are left unchanged, and sending null clears a field. Date, amount and balance are read-only and cannot be modified.
       parameters:
         - in: path
           name: id
-          description: Account ID
-          required: true
-          type: string
-        - in: path
-          name: transactionId
           description: Transaction ID
           required: true
           type: string
@@ -94,21 +129,25 @@ paths:
           type: string
         - in: body
           name: body
-          description: Transaction Payload
+          description: Fields to add, update or clear
           required: true
           schema:
             $ref: "#/definitions/TransactionPayload"
+      consumes:
+        - application/json
       produces:
         - application/json
       responses:
         "200":
-          description: Updating User Account Transaction successfully
+          description: Transaction updated successfully
           schema:
             $ref: "#/definitions/TransactionResponse"
         "400":
           description: Invalid Fields
         "401":
-          description: Unauthorized
+          description: Unauthorized — missing or invalid token
+        "404":
+          description: Transaction not found, or not owned by the authenticated user
         "500":
           description: Internal Server Error
 
@@ -123,49 +162,72 @@ definitions:
     properties:
       category:
         type: string
-        description: Transaction category
+        x-nullable: true
+        description: Transaction category. Send null to clear the field.
       notes:
         type: string
-        description: Transaction notes
+        x-nullable: true
+        description: Transaction notes. Send null to clear the field.
   Transaction:
     type: object
     properties:
       id:
-        type: integer
+        type: string
+        description: Transaction unique identifier
       date:
         type: string
+        format: date
+        description: Date the transaction was recorded
       description:
         type: string
+        description: Label of the transaction, such as the merchant name
       amount:
         type: number
+        format: float
+        description: Amount of the transaction
       balance:
         type: number
+        format: float
+        description: Account balance once the transaction was applied
       transactionType:
         type: string
+        description: Channel the transaction went through
       category:
         type: string
+        x-nullable: true
+        description: Category set by the user, null when unset
       notes:
         type: string
+        x-nullable: true
+        description: Free text note set by the user, null when unset
   Account:
+    description: An account together with the transactions of the requested month
     allOf:
       - $ref: "#/definitions/AccountList"
       - type: object
         properties:
           transactions:
             type: array
+            description: Transactions of the requested month, most recent first
             items:
               $ref: "#/definitions/Transaction"
   AccountList:
     type: object
+    description: An account without its transactions, as listed on the user page
     properties:
       id:
-        type: integer
+        type: string
+        description: Account unique identifier
       name:
         type: string
+        description: Display name of the account
       amount:
         type: number
+        format: float
+        description: Current balance of the account
       description:
         type: string
+        description: Label shown under the balance
   AccountsResponse:
     type: object
     properties:
